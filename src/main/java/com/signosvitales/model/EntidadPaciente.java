@@ -2,7 +2,11 @@ package com.signosvitales.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * 
+ * EntidadPaciente
+ * representa basicamente, la entidad de dominio de un paciente y su historial de signos vitales
+ */
 public class EntidadPaciente {
     //variables iniciales para info del paciente
     private String idPaciente;
@@ -10,6 +14,12 @@ public class EntidadPaciente {
     private int edad;
     private List<RegistroSignoVital> historial;
 
+    /**
+     * crea un nuevo paciente con su historial en blanco.
+     * @param idPaciente Identificador único del paciente.
+     * @param nombre     Nombre completo del paciente.
+     * @param edad       Edad en años.
+     */
     public EntidadPaciente(String idPaciente, String nombre, int edad) {
         this.idPaciente = idPaciente;
         this.nombre = nombre;
@@ -17,7 +27,11 @@ public class EntidadPaciente {
         this.historial = new ArrayList<>();
     }
 
-    // Método principal, se conecta con RegistroSignoVital
+    /**
+     * Método principal, se conecta con RegistroSignoVital
+     * agrega signos vitales al historial del paciente.
+     * @param registro
+     */
     public void agregarRegistro(RegistroSignoVital registro) {
         this.historial.add(registro);
     }
