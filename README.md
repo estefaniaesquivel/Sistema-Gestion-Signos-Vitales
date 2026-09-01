@@ -30,34 +30,6 @@ El **Sistema de Gestión de Signos Vitales** permite la captura manual de consta
 * **Persistencia Ligera:** Manejo de datos mediante el patrón DAO sobre archivos planos en formato CSV.
 * **Interfaz Orientada al Usuario:** Flujo visual en JavaFX desacoplado mediante vistas FXML.
 
----
-
-## Arquitectura del Sistema
-
-El sistema implementa una arquitectura en tres capas para garantizar una clara separación de responsabilidades y mantenibilidad:
-
-+-------------------------------------------------------+
-|                    CAPA DE PRESENTACIÓN               |
-|  vistas FXML (Scene Builder) + Controladores JavaFX   |
-+---------------------------+---------------------------+
-|
-v
-+-------------------------------------------------------+
-|                    CAPA DE LÓGICA                     |
-|  Entidades de Dominio (Paciente, Registro, Signos)    |
-+---------------------------+---------------------------+
-|
-v
-+-------------------------------------------------------+
-|                  CAPA DE PERSISTENCIA                 |
-|      Patrón DAO (UsuarioDAO, PacienteDAO, etc.)       |
-+---------------------------+---------------------------+
-|
-v
-+-------------------------------------------------------+
-|                    ALMACENAMIENTO                     |
-|            Archivos Planos de Texto (.csv)            |
-+-------------------------------------------------------+
 
 ---
 
