@@ -7,6 +7,9 @@ import java.time.LocalDateTime;
  * Almacena la fecha y hora generadas automáticamente, junto con las
  * tres mediciones fisiológicas validadas por sus respectivas clases.
  * 
+ * RegistroSignoVital recibe la instancia de PresionArterial (junto a Temperatura y FrecuenciaCardiaca) y ejecuta su propio método calcularNivelEstabilidad()
+ * para determinar el veredicto global de estabilidad del paciente(Estable, Riesgo Moderado, Crítico).
+ * Por el momento 
  */
 public class RegistroSignoVital {
 
@@ -108,5 +111,32 @@ public class RegistroSignoVital {
     /** Actualiza la instancia de FrecuenciaCardiaca asociada al registro. */
     public void setFrecuenciaCardiaca(FrecuenciaCardiaca frecuenciaCardiaca) { 
         this.frecuenciaCardiaca = frecuenciaCardiaca; 
+    }
+
+
+    /**
+     * Evalúa las mediciones fisiológicas para determinar el veredicto general.
+     * Consulta el estado individual mediante esRangoNormal() de cada signo vital (Temperatura, PresionArterial, FrecuenciaCardiaca).
+     * 
+     * @return "Estable", "Riesgo Moderado" o "Crítico".
+     */
+    public String calcularNivelEstabilidad() {
+        boolean tempEstable = (temperatura != null) && temperatura.esRangoNormal();
+        boolean presionEstable = (presionArterial != null) && presionArterial.esRangoNormal();
+        boolean fcEstable = (frecuenciaCardiaca != null) && frecuenciaCardiaca.esRangoNormal();
+
+        int signosNormales = 0;
+        if (tempEstable) signosNormales++;
+        if (presionEstable) signosNormales++;
+        if (fcEstable) signosNormales++;
+
+        /**Clasificación del veredicto final*/ 
+        if (signosNormales == 3) {
+            return "Estable";          // Todos los signos normales (Semáforo Verde)
+        } else if (signosNormales == 1 || signosNormales == 2) {
+            return "Riesgo Moderado"; // 1oó 2 signos alterados (Semáforo Amarillo)
+        } else {
+            return "Crítico";         // Todos los signos alterados (Semáforo Rojo)
+        }
     }
 }
