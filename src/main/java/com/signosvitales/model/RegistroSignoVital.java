@@ -172,12 +172,14 @@ public class RegistroSignoVital {
         if (fcEstable) signosNormales++;
 
         /**Clasificación del veredicto final*/ 
-        if (signosNormales == 3) {
-            return "Estable";          // Todos los signos normales (Semáforo Verde)
-        } else if (signosNormales == 1 || signosNormales == 2) {
-            return "Riesgo Moderado"; // 1oó 2 signos alterados (Semáforo Amarillo)
-        } else {
-            return "Crítico";         // Todos los signos alterados (Semáforo Rojo)
+        switch (signosNormales) {
+            case 3:
+                return "Estable";          // Todos los signos normales (Semáforo Verde)
+            case 1:
+            case 2:
+                return "Riesgo Moderado"; // 1 o 2 signos alterados (Semáforo Amarillo)
+            default:
+                return "Crítico";         // Todos los signos alterados (Semáforo Rojo)
         }
     }
 }

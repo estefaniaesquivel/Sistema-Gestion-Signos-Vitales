@@ -6,11 +6,11 @@ package com.signosvitales.model;
 public class Usuario {
 
     /** Identificador único del usuario. */
-    private String idUsuario;
+    private final String idUsuario;
     /** Nombre completo del médico. */
     private String nombreMedico;
     /** Nombre de usuario para iniciar sesión. */
-    private String usuario;
+    private final String usuario;
     /** Hash de la contraseña almacenada de forma segura. */
     private String passwordHash;
     
