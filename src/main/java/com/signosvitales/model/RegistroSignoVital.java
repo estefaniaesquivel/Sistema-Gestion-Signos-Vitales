@@ -53,6 +53,47 @@ public class RegistroSignoVital {
         this.frecuenciaCardiaca = frecuenciaCardiaca; // RF-SV-03
     }
 
+    /**
+     * Constructor sobrecargado enfocado en la medición de presión arterial.
+     * 
+     * @param idRegistro Identificador único del registro.
+     * @param idPaciente Identificador del paciente.
+     * @param presionArterial Instancia de PresionArterial.
+     */
+    public RegistroSignoVital(String idRegistro, String idPaciente, PresionArterial presionArterial) {
+        this(idRegistro, idPaciente, null, presionArterial, null);
+    }
+
+    /**
+     * Determina el nivel de estabilidad del paciente con base en el resultado
+     * del cálculo de la presión arterial y las mediciones disponibles.
+     * 
+     * @return "Normal", "Riesgo Moderado" o "Crítico".
+     */
+    public String determinarNivelEstabilidad() {
+        if (presionArterial == null) {
+            return "Sin datos";
+        }
+
+        // 1. Caso Normal: Presión arterial y demás signos presentes en rango normal
+        boolean presionNormal = presionArterial.esRangoNormal();
+        boolean tempNormal = (temperatura == null) || temperatura.esRangoNormal();
+        boolean fcNormal = (frecuenciaCardiaca == null) || frecuenciaCardiaca.esRangoNormal();
+
+        if (presionNormal && tempNormal && fcNormal) {
+            return "Normal";
+        }
+
+        // 2. Caso Crítico: PAM en rango extremo de riesgo (<65 o >115 mmHg)
+        double pam = presionArterial.calcularPAM();
+        if (pam < 65.0 || pam > 115.0) {
+            return "Crítico";
+        }
+
+        // 3. Caso Alteración Leve / Moderada
+        return "Riesgo Moderado";
+    }
+
     /** Getters y Setters */
     public String getIdRegistro() { 
         return idRegistro; 
