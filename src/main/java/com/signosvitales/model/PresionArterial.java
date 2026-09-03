@@ -1,4 +1,5 @@
 package com.signosvitales.model;
+//---Este pedazo es en base al diagrama de flujo del calculo de presion arterial---
 
 public class PresionArterial {
     private double sistolica;  // PAS presion arterial sistolica
