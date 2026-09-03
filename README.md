@@ -97,4 +97,3 @@ src/
             └── RegistroSignosView.fxml
 
 
-#hola
