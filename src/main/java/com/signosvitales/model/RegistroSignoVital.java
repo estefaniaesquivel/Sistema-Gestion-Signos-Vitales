@@ -22,7 +22,7 @@ public class RegistroSignoVital {
      * momento de guardarlos o consultarlos desde el CSV.
     */
     private String idPaciente;
-    
+
 
     /** Fecha y hora exacta de la captura generada por el sistema. */
     private LocalDateTime fechaHora;
