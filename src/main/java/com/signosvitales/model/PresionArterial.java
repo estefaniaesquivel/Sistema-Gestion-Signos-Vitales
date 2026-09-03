@@ -1,8 +1,8 @@
 package com.signosvitales.model;
 
 public class PresionArterial {
-    private double sistolica;  // PAS (presion arterial sistolica)
-    private double diastolica; // PAD (presion arterial diastolica)
+    private double sistolica;  // PAS presion arterial sistolica
+    private double diastolica; // PAD presion arterial diastolica
 
     public PresionArterial(double sistolica, double diastolica) {
         if (sistolica <= 0 || diastolica <= 0 || sistolica <= diastolica) {
@@ -12,12 +12,12 @@ public class PresionArterial {
         this.diastolica = diastolica;
     }
 
-    // Cálculo exacto según la fórmula del diagrama: pam = [(pad * 2) + pas] / 3
+    // Calculo por la formula del diagrama: pam = [(pad * 2) + pas] / 3
     public double calcularPAM() {
         return ((diastolica * 2) + sistolica) / 3.0;
     }
 
-    // Evaluación directa del diagrama para saber si está en rango normal (Estable)
+    // Evaluacion directa del diagrama para saber si esta en rango normal (Estable)
     public boolean esRangoNormal() {
         double pam = calcularPAM();
         return pam >= 70.0 && pam <= 100.0;
