@@ -13,8 +13,18 @@ import java.time.LocalDateTime;
  */
 public class RegistroSignoVital {
 
+    /** Identificador único del registro de signos vitales*/
     private String idRegistro;
+
+    /** Identificador del paciente al que pertenece la medición .
+     * * EntidadPaciente define quién es el paciente, mientras que
+     * RegistroSignoVital incluye el idPaciente para saber a quién pertenece la medición al
+     * momento de guardarlos o consultarlos desde el CSV.
+    */
     private String idPaciente;
+    
+
+    /** Fecha y hora exacta de la captura generada por el sistema. */
     private LocalDateTime fechaHora;
     private Temperatura temperatura;
     private PresionArterial presionArterial;
