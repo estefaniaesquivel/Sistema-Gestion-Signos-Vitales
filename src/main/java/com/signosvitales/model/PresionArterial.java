@@ -12,7 +12,7 @@ public class PresionArterial {
         this.diastolica = diastolica;
     }
 
-    // Cálculo exacto según la fórmula del diagrama: pam = [(pad * 2) + pas] / 3
+    // Cálculo pam = [(pad * 2) + pas] / 3
     public double calcularPAM() {
         return ((diastolica * 2) + sistolica) / 3.0;
     }
