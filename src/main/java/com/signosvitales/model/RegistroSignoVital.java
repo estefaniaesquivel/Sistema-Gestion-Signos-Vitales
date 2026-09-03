@@ -16,7 +16,7 @@ public class RegistroSignoVital {
     /** Identificador único del registro de signos vitales*/
     private String idRegistro;
 
-    /** Identificador del paciente al que pertenece la medición .
+    /** idntificador del paciente al que pertenece la medición .
      * * EntidadPaciente define quién es el paciente, mientras que
      * RegistroSignoVital incluye el idPaciente para saber a quién pertenece la medición al
      * momento de guardarlos o consultarlos desde el CSV.
@@ -50,7 +50,7 @@ public class RegistroSignoVital {
     }
 
     /**
-     * Constructor sobrecargado enfocado en la medición de presión arterial.
+     * constructor sobrecargado enfocado en la medición de presión arterial.
      * 
      * @param idRegistro Identificador único del registro.
      * @param idPaciente Identificador del paciente.
