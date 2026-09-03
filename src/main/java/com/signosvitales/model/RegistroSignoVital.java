@@ -13,24 +13,12 @@ import java.time.LocalDateTime;
  */
 public class RegistroSignoVital {
 
-    /** Identificador único del registro de signos vitales. */
     private String idRegistro;
-
-    /** Identificador del paciente al que pertenece la medición (RF-SV-01). */
     private String idPaciente;
-
-    /** Fecha y hora exacta de la captura generada por el sistema (RF-SV-02). */
     private LocalDateTime fechaHora;
-
-    /** Objeto que encapsula y valida la temperatura corporal (RF-SV-03). */
     private Temperatura temperatura;
-
-    /** Objeto que encapsula y valida la presión arterial (RF-SV-03). */
     private PresionArterial presionArterial;
-
-    /** Objeto que encapsula y valida la frecuencia cardíaca (RF-SV-03). */
     private FrecuenciaCardiaca frecuenciaCardiaca;
-
     /**
      * Construye un nuevo registro asociando las mediciones al paciente 
      * y asignando automáticamente la fecha/hora actual del sistema.
@@ -41,10 +29,8 @@ public class RegistroSignoVital {
      * @param presionArterial Instancia previamente validada de PresionArterial.
      * @param frecuenciaCardiaca Instancia previamente validada de FrecuenciaCardiaca.
      */
-    public RegistroSignoVital(String idRegistro, String idPaciente, 
-                              Temperatura temperatura, 
-                              PresionArterial presionArterial, 
-                              FrecuenciaCardiaca frecuenciaCardiaca) {
+    public RegistroSignoVital(String idRegistro, String idPaciente, Temperatura temperatura, 
+                              PresionArterial presionArterial, FrecuenciaCardiaca frecuenciaCardiaca) {
         this.idRegistro = idRegistro;
         this.idPaciente = idPaciente; // RF-SV-01
         this.fechaHora = LocalDateTime.now(); // RF-SV-02

@@ -4,16 +4,10 @@ package com.signosvitales.model;
  * 
  */
 public class Usuario {
-
-    /** Identificador único del usuario. */
     private final String idUsuario;
-    /** Nombre completo del médico. */
     private String nombreMedico;
-    /** Nombre de usuario para iniciar sesión. */
     private final String usuario;
-    /** Hash de la contraseña almacenada de forma segura. */
     private String passwordHash;
-    
 
     /**
      * Constructor de la clase Usuario.
@@ -39,7 +33,6 @@ public class Usuario {
     public String getIdUsuario() { 
         return idUsuario; 
     }
-
     /**
      * Obtiene el nombre del médico.
      * @return El nombre completo del médico.
@@ -47,7 +40,6 @@ public class Usuario {
     public String getNombreMedico() { 
         return nombreMedico; 
     }
-
     /**
      * Obtiene el nombre de usuario de inicio de sesión.
      * @return El username registrado.
@@ -55,7 +47,6 @@ public class Usuario {
     public String getUsuario() { 
         return usuario; 
     }
-
     /**
      * Obtiene el hash de la contraseña.
      * @return El string del hash.
@@ -63,7 +54,6 @@ public class Usuario {
     public String getPasswordHash() { 
         return passwordHash; 
     }
-
     /**
      * Actualiza el nombre del médico.
      * @param nombreMedico El nuevo nombre del médico.
@@ -71,7 +61,6 @@ public class Usuario {
     public void setNombreMedico(String nombreMedico) {
         this.nombreMedico = nombreMedico;
     }
-
     /**
      * Actualiza el hash de la contraseña.
      * @param passwordHash El nuevo hash de la contraseña.
