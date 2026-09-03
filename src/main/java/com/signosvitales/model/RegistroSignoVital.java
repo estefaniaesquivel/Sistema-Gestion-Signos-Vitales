@@ -3,20 +3,26 @@ package com.signosvitales.model;
 import java.time.LocalDateTime;
 
 /**
- * Representa una captura puntual de los signos vitales de un paciente.
+ * Representa una captura de los signos vitales de un paciente.
  * Almacena la fecha y hora generadas automáticamente, junto con las
  * tres mediciones fisiológicas validadas por sus respectivas clases.
  * 
- * RegistroSignoVital recibe la instancia de PresionArterial (junto a Temperatura y FrecuenciaCardiaca) y ejecuta su propio método calcularNivelEstabilidad()
+ * RegistroSignoVital recibe la instancia de PresionArterial 
+ * (junto a Temperatura y FrecuenciaCardiaca) y ejecuta su propio método calcularNivelEstabilidad()
  * para determinar el veredicto global de estabilidad del paciente(Estable, Riesgo Moderado, Crítico).
- * Por el momento 
+ *
  */
 public class RegistroSignoVital {
 
-    /** Identificador único del registro de signos vitales. */
+    /** Identificador único del registro de signos vitales.
+     * EntidadPaciente define quién es el paciente, mientras que
+     * RegistroSignoVital incluye el idPaciente para saber a quién pertenece la medición al
+     * momento de guardarlos o consultarlos desde el CSV.
+     */
     private String idRegistro;
 
-    /** Identificador del paciente al que pertenece la medición (RF-SV-01). */
+    /** Identificador del paciente al que pertenece la medición (RF-SV-01).
+    */
     private String idPaciente;
 
     /** Fecha y hora exacta de la captura generada por el sistema (RF-SV-02). */
