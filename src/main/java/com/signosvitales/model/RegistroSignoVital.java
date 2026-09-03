@@ -51,10 +51,6 @@ public class RegistroSignoVital {
 
     /**
      * Constructor sobrecargado enfocado en la medición de presión arterial.
-     * 
-     * @param idRegistro Identificador único del registro.
-     * @param idPaciente Identificador del paciente.
-     * @param presionArterial Instancia de PresionArterial.
      */
     public RegistroSignoVital(String idRegistro, String idPaciente, PresionArterial presionArterial) {
         this(idRegistro, idPaciente, null, presionArterial, null);
