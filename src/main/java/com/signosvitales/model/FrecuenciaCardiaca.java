@@ -1,7 +1,7 @@
 package com.signosvitales.model;
 
 /**
- * Encapsula la medición de la frecuencia cardíaca.
+ * Ecapsula la medición de la frecuencia cardíaca.
  */
 public class FrecuenciaCardiaca {
     private int bpm; // Latidos por minuto
