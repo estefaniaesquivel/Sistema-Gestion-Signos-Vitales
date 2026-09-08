@@ -1,6 +1,6 @@
 # Sistema de Gestión de Signos Vitales
 
-Un sistema local en Java diseñado para que el personal médico capture, consulte y evalúe la estabilidad fisiológica de sus pacientes mediante una interfaz gráfica intuitiva y un mecanismo de persistencia ligero sin dependencias de motores de bases de datos externos.
+Un sistema web en Java diseñado para que el personal médico capture, consulte y evalúe la estabilidad fisiológica de sus pacientes mediante una interfaz gráfica intuitiva y un mecanismo de persistencia ligero sin dependencias de motores de bases de datos externos.
 
 ---
 
@@ -37,8 +37,8 @@ El **Sistema de Gestión de Signos Vitales** permite la captura manual de consta
 
 | Componente | Tecnología / Herramienta |
 | :--- | :--- |
-| **Lenguaje de Programación** | Java 17+ |
-| **Interfaz Gráfica (UI)** | JavaFX SDK & Scene Builder |
+| **Lenguaje de Programación** | Java 17+, Framework Spring Boot (API REST) con Servidor Web Tomcat Embebido|
+| **Interfaz Gráfica (UI)** | Javascript, CSS3 y HTML5 |
 | **Entorno de Desarrollo** | Visual Studio Code |
 | **Gestión de Versiones** | Git & GitHub |
 | **Mecanismo de Persistencia** | I/O Streams con archivos CSV |
@@ -71,29 +71,9 @@ Permite al médico ingresar la lectura de signos vitales asociada a un paciente.
 ## Estructura del Proyecto
 
 ```text
-src/
-└── com/
-    └── signosvitales/
-        ├── app/
-        │   └── Main.java
-        ├── controller/
-        │   ├── HistorialController.java
-        │   ├── LoginController.java
-        │   └── RegistroSignosController.java
-        ├── dao/
-        │   ├── PacienteDAO.java
-        │   ├── RegistroDAO.java
-        │   └── UsuarioDAO.java
-        ├── model/
-        │   ├── EntidadPaciente.java
-        │   ├── FrecuenciaCardiaca.java
-        │   ├── PresionArterial.java
-        │   ├── RegistroSignoVital.java
-        │   └── Temperatura.java
-        └── view/
-            ├── EstabilidadView.fxml
-            ├── HistorialPacienteView.fxml
-            ├── LoginView.fxml
-            └── RegistroSignosView.fxml
+
+
+
+          
 
 
