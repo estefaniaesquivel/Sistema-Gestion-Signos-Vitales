@@ -38,7 +38,7 @@ El **Sistema de Gestión de Signos Vitales** permite la captura manual de consta
 | Componente | Tecnología / Herramienta |
 | :--- | :--- |
 | **Lenguaje de Programación** | Java 17+, Framework Spring Boot (API REST) con Servidor Web Tomcat Embebido|
-| **Pruebas de API & Cliente REST** | Bruno API Client |
+| **Pruebas de API & Cliente REST** | Bruno API Client <img src="[docs/bruno-demo.png](https://avatars.githubusercontent.com/u/114530840?v=4)" alt="Bruno" width="300"/> |
 | **Interfaz Gráfica (UI)** | Javascript, CSS3 y HTML5 |
 | **Entorno de Desarrollo** | Visual Studio Code |
 | **Gestión de Versiones** | Git & GitHub |
