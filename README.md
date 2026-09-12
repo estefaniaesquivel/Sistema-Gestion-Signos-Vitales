@@ -42,14 +42,13 @@ El **Sistema de Gestión de Signos Vitales** permite la captura manual de consta
 
 | Componente | Tecnología / Herramienta |
 | :--- | :--- |
-| **Lenguaje de Programación** | Java 17+, Framework Spring Boot (API REST) con Servidor Web Tomcat Embebido <br> <img src="https://miro.medium.com/v2/resize:fit:1200/1*gxXLMIuJDHCH7fwIgEP1cg.png" alt="springboot" width="300"/>|
+| **Lenguaje de Programación** | Java 17+, Framework Spring Boot (API REST) con Servidor Web Tomcat Embebido <br> <img src="https://miro.medium.com/v2/resize:fit:1200/1*gxXLMIuJDHCH7fwIgEP1cg.png" alt="springboot" width="300"/> |
 | **Pruebas de API & Cliente REST** | Bruno API Client <br> <img src="https://devio2024-media.developers.io/image/upload/f_auto,q_auto,w_3840/v1783834490/user-gen-eyecatch/dwdmcf5jwddw60eykrre.png" alt="Bruno" width="300"/> |
 | **Interfaz Gráfica (UI)** | JavaScript, CSS3 y HTML5 (PWA) |
-| **Alojamiento Cloud (Hosting)** | Render (Web Service para Backend & Static Site para PWA) <br> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRznRcHFwGdWnxV_iB2TAzQMqbfKiGPw0uP00-npuHSDuVtn1BALmYExnMt&s=10" alt="render" width="300"/>|
-| **Base de Datos & Persistencia** | PostgreSQL alojado en Supabase (Conectado a Render mediante JDBC / Patrón DAO) <br> <img src="https://miro.medium.com/1*qIupaLEYPaVvP6M2nKcp5Q.png" alt="supabase" width="300"/>|
+| **Alojamiento Cloud (Hosting)** | **Frontend & Backend:** Render (Web Service para Spring Boot & Static Site para PWA) <br> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRznRcHFwGdWnxV_iB2TAzQMqbfKiGPw0uP00-npuHSDuVtn1BALmYExnMt&s=10" alt="render" width="300"/> <br><br> **Base de Datos (Host BD):** Supabase <br> <img src="https://miro.medium.com/1*qIupaLEYPaVvP6M2nKcp5Q.png" alt="supabase" width="300"/> |
+| **Base de Datos & Persistencia** | PostgreSQL (Conexión mediante JDBC y arquitectura basada en el Patrón DAO) |
 | **Entorno de Desarrollo** | Visual Studio Code |
 | **Gestión de Versiones** | Git & GitHub |
-
 ---
 
 
