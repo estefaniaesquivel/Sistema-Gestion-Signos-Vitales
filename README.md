@@ -1,6 +1,6 @@
 # Sistema de Gestión de Signos Vitales
 
-Un sistema web PWA en Java diseñado para que el personal médico capture, consulte y evalúe la estabilidad fisiológica de sus pacientes mediante una interfaz gráfica intuitiva y un mecanismo de persistencia ligero sin dependencias de motores de bases de datos externos para la versión prueba del sistema.
+Un sistema web PWA en Java diseñado para que el personal médico capture, consulte y evalúe la estabilidad fisiológica de sus pacientes mediante una interfaz gráfica intuitiva. 
 
 ---
 
