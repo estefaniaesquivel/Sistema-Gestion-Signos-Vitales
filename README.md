@@ -49,6 +49,18 @@ El **Sistema de Gestión de Signos Vitales** permite la captura manual de consta
 | **Base de Datos & Persistencia** | PostgreSQL (Conexión mediante JDBC y arquitectura basada en el Patrón DAO) |
 | **Entorno de Desarrollo** | Visual Studio Code |
 | **Gestión de Versiones** | Git & GitHub |
+
+
+### ¿Por qué la combinación de Render y Supabase es la elección ideal?
+
+<img src="https://miro.medium.com/1*1YMpP_3xodeGI8nSlTG4ig.png" alt="Arquitectura Render y Supabase" width="600"/>
+
+La arquitectura desacoplada entre **Render** y **Supabase** es la estrategia óptima para publicar una API en producción sin incurrir en costos de infraestructura:
+
+* **Persistencia sin vencimiento:** Render borra los datos locales al entrar en reposo por su sistema de archivos efímero. Al conectar la API desplegada en Render a PostgreSQL en Supabase, los datos clínicos permanecen intactos de manera permanente.
+* **Separación de responsabilidades:** Render ejecuta el backend (Spring Boot) y aloja el frontend (PWA), mientras que Supabase administra la capa de base de datos relacional y sus copias de seguridad.
+* **Flujo DevOps automatizado:** Permite desplegar el código directamente desde GitHub en Render mientras la base de datos se mantiene disponible en la nube de forma independiente.
+  
 ---
 
 
