@@ -46,7 +46,7 @@ El **Sistema de Gestión de Signos Vitales** permite la captura manual de consta
 | **Pruebas de API & Cliente REST** | Bruno API Client <br> <img src="https://devio2024-media.developers.io/image/upload/f_auto,q_auto,w_3840/v1783834490/user-gen-eyecatch/dwdmcf5jwddw60eykrre.png" alt="Bruno" width="300"/> |
 | **Interfaz Gráfica (UI)** | JavaScript, CSS3 y HTML5 (PWA) |
 | **Alojamiento Cloud (Hosting)** | Render (Web Service para Backend & Static Site para PWA) <br> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRznRcHFwGdWnxV_iB2TAzQMqbfKiGPw0uP00-npuHSDuVtn1BALmYExnMt&s=10" alt="render" width="300"/>|
-| **Base de Datos & Persistencia** | PostgreSQL alojado en Supabase (Conectado a Render mediante JDBC / Patrón DAO) <br> <img src="[https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRznRcHFwGdWnxV_iB2TAzQMqbfKiGPw0uP00-npuHSDuVtn1BALmYExnMt&s=10](https://getlogo.net/wp-content/uploads/2020/11/supabase-logo-vector.png)" alt="supabase" width="300"/>|
+| **Base de Datos & Persistencia** | PostgreSQL alojado en Supabase (Conectado a Render mediante JDBC / Patrón DAO) <br> <img src="https://miro.medium.com/1*qIupaLEYPaVvP6M2nKcp5Q.png" alt="supabase" width="300"/>|
 | **Entorno de Desarrollo** | Visual Studio Code |
 | **Gestión de Versiones** | Git & GitHub |
 
