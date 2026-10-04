@@ -1,5 +1,5 @@
 package com.signosvitales.repository;
 
-public class RegistroDAO {
+public class PacienteRepository {
 
 }
