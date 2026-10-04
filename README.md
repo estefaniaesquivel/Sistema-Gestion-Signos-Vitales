@@ -96,63 +96,54 @@ Sistema-Gestion-Signos-Vitales/
 │   │   ├── java/
 │   │   │   └── com/signosvitales/
 │   │   │       │
-│   │   │       ├── controller/                  <-- CONTROLADORES (ENDPOINTS REST)
+│   │   │       ├── controller/                     <-- ENDPOINTS REST
 │   │   │       │   ├── EstabilidadController.java
 │   │   │       │   ├── HistorialController.java
 │   │   │       │   ├── LoginController.java
 │   │   │       │   └── RegistroSignosController.java
 │   │   │       │
-│   │   │       ├── service/                     <-- LÓGICA DE NEGOCIO Y EVALUACIÓN
+│   │   │       ├── service/                        <-- LÓGICA DE NEGOCIO Y REGLAS CLÍNICAS
 │   │   │       │   ├── PacienteService.java
 │   │   │       │   ├── PacienteServiceImpl.java
 │   │   │       │   ├── RegistroSignoVitalService.java
 │   │   │       │   ├── RegistroSignoVitalServiceImpl.java
 │   │   │       │   └── EvaluadorFisiologico.java
 │   │   │       │
-│   │   │       ├── dao/                         <-- PERSISTENCIA EN ARCHIVOS CSV
-│   │   │       │   ├── PacienteDAO.java
-│   │   │       │   ├── PacienteDAOImpl.java
-│   │   │       │   ├── RegistroDAO.java
-│   │   │       │   ├── RegistroDAOImpl.java
-│   │   │       │   ├── UsuarioDAO.java
-│   │   │       │   └── UsuarioDAOImpl.java
+│   │   │       ├── repository/                     <-- REEMPLAZA A 'dao': INTERFACES JPA PARA POSTGRESQL
+│   │   │       │   ├── PacienteRepository.java     <-- extends JpaRepository<EntidadPaciente, Long>
+│   │   │       │   ├── RegistroSignoVitalRepository.java <-- extends JpaRepository<RegistroSignoVital, Long>
+│   │   │       │   └── UsuarioRepository.java      <-- extends JpaRepository<Usuario, Long>
 │   │   │       │
-│   │   │       ├── model/                       <-- ENTIDADES DE DOMINIO
-│   │   │       │   ├── CategoriaEtaria.java      <-- Enum de rangos etarios (edad)
-│   │   │       │   ├── EntidadPaciente.java
-│   │   │       │   ├── FrecuenciaCardiaca.java
-│   │   │       │   ├── PresionArterial.java
-│   │   │       │   ├── RegistroSignoVital.java
-│   │   │       │   ├── Temperatura.java
-│   │   │       │   └── Usuario.java
+│   │   │       ├── model/                          <-- ENTIDADES JPA MAPEADAS A TABLAS DE SUPABASE
+│   │   │       │   ├── CategoriaEtaria.java        <-- Enum
+│   │   │       │   ├── EntidadPaciente.java        <-- @Entity @Table(name = "pacientes")
+│   │   │       │   ├── FrecuenciaCardiaca.java     <-- @Embeddable o @Entity
+│   │   │       │   ├── PresionArterial.java        <-- @Embeddable o @Entity
+│   │   │       │   ├── RegistroSignoVital.java     <-- @Entity @Table(name = "registros_signos_vitales")
+│   │   │       │   ├── Temperatura.java            <-- @Embeddable o @Entity
+│   │   │       │   └── Usuario.java                <-- @Entity @Table(name = "usuarios")
 │   │   │       │
-│   │   │       ├── dto/                         <-- OBJETOS DE TRANSFERENCIA DE DATOS
+│   │   │       ├── dto/                            <-- DTOs PARA COMUNICACIÓN HTTP/JSON
 │   │   │       │   ├── PacientePeticionDTO.java
 │   │   │       │   ├── PacienteRespuestaDTO.java
-│   │   │       │   ├── RegistroPeticionDTO.java  <-- Recibe el formulario HTML/JS
-│   │   │       │   └── RegistroRespuestaDTO.java <-- Devuelve el veredicto a la UI
-│   │   │       │
-│   │   │       ├── util/                        <-- UTILIDADES 
-│   │   │       │   └── ManejadorArchivosCSV.java
+│   │   │       │   ├── RegistroPeticionDTO.java
+│   │   │       │   └── RegistroRespuestaDTO.java
 │   │   │       │
 │   │   │       └── SignosVitalesApplication.java
 │   │   │
 │   │   └── resources/
-│   │       ├── static/                          <-- FRONTEND (WEB UI)
+│   │       ├── static/                             <-- FRONTEND (PWA / WEB UI)
 │   │       │   ├── index.html
+│   │       │   ├── manifest.json                   <-- Requerido para PWA
+│   │       │   ├── sw.js                           <-- Service Worker para PWA
 │   │       │   ├── css/
 │   │       │   │   └── estilos.css
 │   │       │   └── js/
 │   │       │       └── app.js
 │   │       │
-│   │       ├── data/                            <-- PERSISTENCIA CSV (Para versión prueba, futuramente evolucionando a BD para ser funcional)
-│   │       │   ├── pacientes.csv
-│   │       │   ├── registros.csv
-│   │       │   └── usuarios.csv
-│   │       │
-│   │       └── application.properties
+│   │       └── application.properties              <-- CONFIGURACIÓN CONEXIÓN POSTGRESQL / SUPABASE
 │   │
-│   └── test/                                    <-- PRUEBAS UNITARIAS
+│   └── test/                                       <-- PRUEBAS DE INTEGRACIÓN CON BASE DE DATOS
 │
 ├── .gitignore
 ├── pom.xml
