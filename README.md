@@ -17,6 +17,8 @@ Para el personal clínico o usuarios no experimentados en tecnología, implement
 * [Tecnologías Utilizadas](#tecnologías-utilizadas)
 * [Estructura del Proyecto](#estructura-del-proyecto)
 * [Módulos del Sistema](#módulos-del-sistema)
+* [Configuración de Dockerfile](#configuración-de-dockerfile)
+* [Despliegue DevOps en Render con Docker](#despliegue-devops-en-render-con-docker)
 * [Requisitos e Instalación](#requisitos-e-instalación)
 * [Equipo de Desarrollo](#equipo-de-desarrollo)
 
@@ -32,9 +34,9 @@ El **Sistema de Gestión de Signos Vitales** permite la captura manual de consta
 
 * **Autenticación de Usuarios:** Control de acceso mediante roles para garantizar la privacidad y seguridad de la información médica.
 * **Evaluación Fisiológica Automática:** Clasificación inmediata de lectura de signos vitales (Normal, Riesgo Moderado, Crítico) respaldada por validaciones en el dominio.
-* **Persistencia Ligera:** Manejo de datos mediante el patrón DAO sobre archivos planos en formato CSV.
-* **Interfaz Orientada al Usuario:** Flujo visual en JavaFX desacoplado mediante vistas FXML.
-
+* **Persistencia Relacional y ORM:** Gestión de datos con PostgreSQL en Supabase abstraído mediante Spring Data JPA repositories.
+* **Contenedorización en DevOps:** Empaquetado ligero multi-etapa con Docker para despliegues reproducibles sin dependencias locales en el servidor.
+* **Interfaz Orientada al Usuario:** Flujo visual PWA ligero desacoplado en JavaScript, CSS3 y HTML5.
 
 ---
 
@@ -45,24 +47,26 @@ El **Sistema de Gestión de Signos Vitales** permite la captura manual de consta
 | **Lenguaje de Programación** | Java 17+, Framework Spring Boot (API REST) con Servidor Web Tomcat Embebido <br> <img src="https://miro.medium.com/v2/resize:fit:1200/1*gxXLMIuJDHCH7fwIgEP1cg.png" alt="springboot" width="300"/> |
 | **Pruebas de API & Cliente REST** | Bruno API Client <br> <img src="https://devio2024-media.developers.io/image/upload/f_auto,q_auto,w_3840/v1783834490/user-gen-eyecatch/dwdmcf5jwddw60eykrre.png" alt="Bruno" width="300"/> |
 | **Interfaz Gráfica (UI)** | JavaScript, CSS3 y HTML5 (PWA) |
-| **Alojamiento Cloud (Hosting)** | **Frontend & Backend:** Render (Web Service para Spring Boot & Static Site para PWA) <br> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRznRcHFwGdWnxV_iB2TAzQMqbfKiGPw0uP00-npuHSDuVtn1BALmYExnMt&s=10" alt="render" width="300"/> <br><br> **Base de Datos (Host BD):** Supabase <br> <img src="https://miro.medium.com/1*qIupaLEYPaVvP6M2nKcp5Q.png" alt="supabase" width="300"/> |
-| **Base de Datos & Persistencia** | PostgreSQL (Conexión mediante JDBC y arquitectura basada en el Patrón DAO) |
+| **Contenedorización & DevOps** | Docker (Multi-stage build con Java 17 Temurin) <br> <img src="https://www.docker.com/wp-content/uploads/2022/03/horizontal-logo-monochromatic-white.png" alt="docker" width="300"/> |
+| **Alojamiento Cloud (Hosting)** | **Frontend & Backend:** Render (Web Service desplegado con Docker) <br> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRznRcHFwGdWnxV_iB2TAzQMqbfKiGPw0uP00-npuHSDuVtn1BALmYExnMt&s=10" alt="render" width="300"/> <br><br> **Base de Datos (Host BD):** Supabase <br> <img src="https://miro.medium.com/1*qIupaLEYPaVvP6M2nKcp5Q.png" alt="supabase" width="300"/> |
+| **Base de Datos & Persistencia** | PostgreSQL en Supabase con Spring Data JPA (`JpaRepository`) |
 | **Entorno de Desarrollo** | Visual Studio Code |
 | **Gestión de Versiones** | Git & GitHub |
 
+---
 
-### ¿Por qué la combinación de Render y Supabase es la elección ideal?
+### ¿Por qué la combinación de Render, Docker y Supabase es la elección ideal?
 
 <img src="https://miro.medium.com/1*1YMpP_3xodeGI8nSlTG4ig.png" alt="Arquitectura Render y Supabase" width="600"/>
 
-La arquitectura desacoplada entre **Render** y **Supabase** es la estrategia óptima para publicar una API en producción sin incurrir en costos de infraestructura:
+La arquitectura desacoplada y contenedorizada entre **Render**, **Docker** y **Supabase** es la estrategia óptima para publicar una API en producción sin incurrir en costos de infraestructura ni lidiar con problemas de entorno:
 
-* **Persistencia sin vencimiento:** Render borra los datos locales al entrar en reposo por su sistema de archivos efímero. Al conectar la API desplegada en Render a PostgreSQL en Supabase, los datos clínicos permanecen intactos de manera permanente.
-* **Separación de responsabilidades:** Render ejecuta el backend (Spring Boot) y aloja el frontend (PWA), mientras que Supabase administra la capa de base de datos relacional y sus copias de seguridad.
-* **Flujo DevOps automatizado:** Permite desplegar el código directamente desde GitHub en Render mientras la base de datos se mantiene disponible en la nube de forma independiente.
-  
+* **Estandarización de entorno (Docker):** Garantiza que la aplicación compile y corra con Java 17 exactamente igual en la máquina local que en la nube de Render, optimizando la RAM a un máximo de 384 MB para no exceder los límites del plan gratuito.
+* **Persistencia sin vencimiento:** Render borra los datos locales al entrar en reposo por su sistema de archivos efímero. Al conectar la API desplegada en Docker hacia PostgreSQL en Supabase, los datos clínicos permanecen intactos de manera permanente.
+* **Separación de responsabilidades:** Render ejecuta el contenedor Docker con Spring Boot y sirve la PWA, mientras que Supabase administra la capa de base de datos relacional y sus copias de seguridad.
+* **Flujo DevOps automatizado:** Cada push a la rama `main` en GitHub activa un pipeline en Render que reconstruye la imagen Docker y despliega la nueva versión sin tiempo de inactividad visible.
+
 ---
-
 
 ## Módulos del Sistema
 
@@ -79,17 +83,15 @@ Permite al médico ingresar la lectura de signos vitales asociada a un paciente.
 * **Temperatura:** Evalúa lecturas en grados Celsius frente a rangos normativos (hipotermia, normal, fiebre).
 * **Presión Arterial:** Mide Presión Sistólica (PAS) y Diastólica (PAD), calculando la Presión Arterial Media (PAM) con la fórmula médica estándar:
 
-  $$\text{PAM} = \frac{(2 \times \text{PAD}) + \text{PAS}}{3}$$
+$$\text{PAM} = \frac{(2 \times \text{PAD}) + \text{PAS}}{3}$$
 
 * **Frecuencia Cardíaca:** Clasifica las pulsaciones en latidos por minuto (bradicardia, normal, taquicardia).
-
 
 ---
 
 ## Estructura del Proyecto
 
 ```text
-
 Sistema-Gestion-Signos-Vitales/
 ├── src/
 │   ├── main/
@@ -109,7 +111,7 @@ Sistema-Gestion-Signos-Vitales/
 │   │   │       │   ├── RegistroSignoVitalServiceImpl.java
 │   │   │       │   └── EvaluadorFisiologico.java
 │   │   │       │
-│   │   │       ├── repository/                     <-- REEMPLAZA A 'dao': INTERFACES JPA PARA POSTGRESQL
+│   │   │       ├── repository/                     <-- INTERFACES JPA PARA POSTGRESQL
 │   │   │       │   ├── PacienteRepository.java     <-- extends JpaRepository<EntidadPaciente, Long>
 │   │   │       │   ├── RegistroSignoVitalRepository.java <-- extends JpaRepository<RegistroSignoVital, Long>
 │   │   │       │   └── UsuarioRepository.java      <-- extends JpaRepository<Usuario, Long>
@@ -146,8 +148,6 @@ Sistema-Gestion-Signos-Vitales/
 │   └── test/                                       <-- PRUEBAS DE INTEGRACIÓN CON BASE DE DATOS
 │
 ├── .gitignore
+├── Dockerfile                                      <-- CONFIGURACIÓN DE CONTENEDORIZACIÓN DEVOPS
 ├── pom.xml
 └── README.md
-          
-
-
