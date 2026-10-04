@@ -1,6 +1,11 @@
 # Sistema de Gestión de Signos Vitales
 
-Un sistema web en Java diseñado para que el personal médico capture, consulte y evalúe la estabilidad fisiológica de sus pacientes mediante una interfaz gráfica intuitiva y un mecanismo de persistencia ligero sin dependencias de motores de bases de datos externos para la versión prueba del sistema.
+Un sistema web PWA en Java diseñado para que el personal médico capture, consulte y evalúe la estabilidad fisiológica de sus pacientes mediante una interfaz gráfica intuitiva. 
+
+---
+
+¿Por qué un PWA (Progressive Web App)?
+Para el personal clínico o usuarios no experimentados en tecnología, implementar una PWA es la opción perfecta porque elimina la barrera de instalar software tradicional: no requiere descargar ejecutables .exe ni enfrentarse a confusas advertencias de virus o permisos de administrador. Con solo un clic desde el navegador, el sistema se integra en el equipo como cualquier programa nativo (con su propio ícono en el escritorio y la barra de tareas) y se actualiza de forma transparente (de manera invisible, automática y sin interrumpir al usuario), garantizando que el personal médico trabaje siempre con la versión más reciente sin realizar configuraciones ni mantenimientos manuales.
 
 ---
 
@@ -37,12 +42,25 @@ El **Sistema de Gestión de Signos Vitales** permite la captura manual de consta
 
 | Componente | Tecnología / Herramienta |
 | :--- | :--- |
-| **Lenguaje de Programación** | Java 17+, Framework Spring Boot (API REST) con Servidor Web Tomcat Embebido|
-| **Interfaz Gráfica (UI)** | Javascript, CSS3 y HTML5 |
+| **Lenguaje de Programación** | Java 17+, Framework Spring Boot (API REST) con Servidor Web Tomcat Embebido <br> <img src="https://miro.medium.com/v2/resize:fit:1200/1*gxXLMIuJDHCH7fwIgEP1cg.png" alt="springboot" width="300"/> |
+| **Pruebas de API & Cliente REST** | Bruno API Client <br> <img src="https://devio2024-media.developers.io/image/upload/f_auto,q_auto,w_3840/v1783834490/user-gen-eyecatch/dwdmcf5jwddw60eykrre.png" alt="Bruno" width="300"/> |
+| **Interfaz Gráfica (UI)** | JavaScript, CSS3 y HTML5 (PWA) |
+| **Alojamiento Cloud (Hosting)** | **Frontend & Backend:** Render (Web Service para Spring Boot & Static Site para PWA) <br> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRznRcHFwGdWnxV_iB2TAzQMqbfKiGPw0uP00-npuHSDuVtn1BALmYExnMt&s=10" alt="render" width="300"/> <br><br> **Base de Datos (Host BD):** Supabase <br> <img src="https://miro.medium.com/1*qIupaLEYPaVvP6M2nKcp5Q.png" alt="supabase" width="300"/> |
+| **Base de Datos & Persistencia** | PostgreSQL (Conexión mediante JDBC y arquitectura basada en el Patrón DAO) |
 | **Entorno de Desarrollo** | Visual Studio Code |
 | **Gestión de Versiones** | Git & GitHub |
-| **Mecanismo de Persistencia** | I/O Streams con archivos CSV |
 
+
+### ¿Por qué la combinación de Render y Supabase es la elección ideal?
+
+<img src="https://miro.medium.com/1*1YMpP_3xodeGI8nSlTG4ig.png" alt="Arquitectura Render y Supabase" width="600"/>
+
+La arquitectura desacoplada entre **Render** y **Supabase** es la estrategia óptima para publicar una API en producción sin incurrir en costos de infraestructura:
+
+* **Persistencia sin vencimiento:** Render borra los datos locales al entrar en reposo por su sistema de archivos efímero. Al conectar la API desplegada en Render a PostgreSQL en Supabase, los datos clínicos permanecen intactos de manera permanente.
+* **Separación de responsabilidades:** Render ejecuta el backend (Spring Boot) y aloja el frontend (PWA), mientras que Supabase administra la capa de base de datos relacional y sus copias de seguridad.
+* **Flujo DevOps automatizado:** Permite desplegar el código directamente desde GitHub en Render mientras la base de datos se mantiene disponible en la nube de forma independiente.
+  
 ---
 
 
