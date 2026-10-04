@@ -1,5 +1,5 @@
 package com.signosvitales.controller;
 
-public class LoginController {
-    
+public class EstabilidadController {
+
 }
