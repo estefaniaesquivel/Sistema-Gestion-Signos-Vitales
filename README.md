@@ -44,7 +44,7 @@ El **Sistema de Gestión de Signos Vitales** permite la captura manual de consta
 
 | Componente | Tecnología / Herramienta |
 | :--- | :--- |
-| **Lenguaje de Programación** | Java 17+, Framework Spring Boot (API REST) con Servidor Web Tomcat Embebido <br> <img src="https://miro.medium.com/v2/resize:fit:1200/1*gxXLMIuJDHCH7fwIgEP1cg.png" alt="springboot" width="300"/> <br> <img src=" https://share.google/mD2Vu5CCrpihdY6lK" alt="tomcat" width="300"/>  |
+| **Lenguaje de Programación** | Java 17+, Framework Spring Boot (API REST) con Servidor Web Tomcat Embebido <br> <img src="https://miro.medium.com/v2/resize:fit:1200/1*gxXLMIuJDHCH7fwIgEP1cg.png" alt="springboot" width="300"/> <br> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFEARqjo5ASV3fe8xgO_HYcdoPEN-loncPMlr6mDZc-A&s=10" alt="tomcat" width="300"/>  |
 | **Pruebas de API & Cliente REST** | Bruno API Client <br> <img src="https://devio2024-media.developers.io/image/upload/f_auto,q_auto,w_3840/v1783834490/user-gen-eyecatch/dwdmcf5jwddw60eykrre.png" alt="Bruno" width="300"/> |
 | **Interfaz Gráfica (UI)** | JavaScript, CSS3 y HTML5 (PWA) |
 | **Contenedorización & DevOps** | Docker (Multi-stage build con Java 17 Temurin) <br> <img src="https://www.docker.com/wp-content/uploads/2022/03/horizontal-logo-monochromatic-white.png" alt="docker" width="300"/> |
