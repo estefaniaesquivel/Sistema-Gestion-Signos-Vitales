@@ -57,7 +57,7 @@ El **Sistema de Gestión de Signos Vitales** permite la captura manual de consta
 
 ### ¿Por qué la combinación de Render, Docker y Supabase es la elección ideal?
 
-<img src="https://miro.medium.com/1*1YMpP_3xodeGI8nSlTG4ig.png" alt="Arquitectura Render y Supabase" width="600"/>
+<img src="https://miro.medium.com/1*1YMpP_3xodeGI8nSlTG4ig.png" alt="Arquitectura Render y Supabase" width="300"/>
 
 La arquitectura desacoplada y contenedorizada entre **Render**, **Docker** y **Supabase** es la estrategia óptima para publicar una API en producción sin incurrir en costos de infraestructura ni lidiar con problemas de entorno:
 
