@@ -37,6 +37,8 @@ Los requisitos se agrupan por módulo, siguiendo la estructura del diagrama de c
 
 ## Módulo de Autenticación (Login del Médico)
 
+### Requisitos funcionales
+
 | ID | Requisito Funcional | Descripción / Criterio de Aceptación |
 | :--- | :--- | :--- |
 | **RF-LOG-01** | Inicio de Sesión | El sistema debe solicitar credenciales de acceso (correo/usuario y contraseña) antes de permitir la navegación a cualquier módulo protegido. |
@@ -44,6 +46,14 @@ Los requisitos se agrupan por módulo, siguiendo la estructura del diagrama de c
 | **RF-LOG-03** | Control de Acceso basado en Roles (RBAC) | El sistema debe restringir las funcionalidades de registro, evaluación de signos vitales e historial clínico exclusivamente a usuarios autenticados con el rol `"MÉDICO"`. |
 | **RF-LOG-04** | Manejo Seguro de Errores | El sistema debe desplegar un mensaje de error genérico (*"Credenciales inválidas"*) al fallar el inicio de sesión, omitiendo detalles sobre cuál campo fue el incorrecto por motivos de seguridad. |
 | **RF-LOG-05** | Redirección Post-Autenticación | Tras una autenticación exitosa, el sistema debe almacenar el token de sesión en la PWA y redirigir automáticamente al médico al panel principal del Historial de Pacientes. |
+
+### Requisitos no funcionales
+
+| ID | Requisito No Funcional | Descripción / Criterio de Aceptación |
+| :--- | :--- | :--- |
+| **RNF-LOG-01** | Tiempo de Respuesta | El proceso de autenticación y generación de respuesta debe ejecutarse en un tiempo no mayor a 2 segundos bajo condiciones normales de red. |
+| **RNF-LOG-02** | Enmascaramiento de Contraseña | Las contraseñas ingresadas en la interfaz de usuario deben estar enmascaradas (campo de tipo `password`) para prevenir la exposición visual en pantalla. |
+| **RNF-LOG-03** | Protección de Credenciales en Tránsito y Reposo | La contraseña debe transmitirse de forma cifrada sobre protocolo seguro (HTTPS) y nunca almacenarse en texto plano en la base de datos (uso de algoritmos de hash como BCrypt). |
 
 
 ---
