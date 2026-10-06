@@ -22,6 +22,30 @@ Para el personal clínico o usuarios no experimentados en tecnología, implement
 * [Requisitos e Instalación](#requisitos-e-instalación)
 * [Equipo de Desarrollo](#equipo-de-desarrollo)
 
+### Equipo de trabajo 
+
+Herbert Espejo 
+Jesús Cruz 
+Axel Morales 
+Agustín Dzib 
+Estefanía Esquivel 
+
+---
+# Análisis de requisitos
+
+Los requisitos se agrupan por módulo, siguiendo la estructura del diagrama de clases: Autenticación, Gestión de Pacientes, Registro de Signos Vitales, Historial del Paciente y Evaluación de Estabilidad (Temperatura, Presión Arterial y Frecuencia Cardíaca). 
+
+## Módulo de Autenticación (Login del Médico)
+
+| ID | Requisito Funcional | Descripción / Criterio de Aceptación |
+| :--- | :--- | :--- |
+| **RF-LOG-01** | Inicio de Sesión | El sistema debe solicitar credenciales de acceso (correo/usuario y contraseña) antes de permitir la navegación a cualquier módulo protegido. |
+| **RF-LOG-02** | Validación de Credenciales | El sistema debe verificar las credenciales ingresadas contra la base de datos persistente (PostgreSQL) mediante servicios de autenticación seguros y denegar el acceso si son incorrectas. |
+| **RF-LOG-03** | Control de Acceso basado en Roles (RBAC) | El sistema debe restringir las funcionalidades de registro, evaluación de signos vitales e historial clínico exclusivamente a usuarios autenticados con el rol `"MÉDICO"`. |
+| **RF-LOG-04** | Manejo Seguro de Errores | El sistema debe desplegar un mensaje de error genérico (*"Credenciales inválidas"*) al fallar el inicio de sesión, omitiendo detalles sobre cuál campo fue el incorrecto por motivos de seguridad. |
+| **RF-LOG-05** | Redirección Post-Autenticación | Tras una autenticación exitosa, el sistema debe almacenar el token de sesión en la PWA y redirigir automáticamente al médico al panel principal del Historial de Pacientes. |
+
+
 ---
 
 ## Descripción General
