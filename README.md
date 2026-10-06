@@ -22,6 +22,40 @@ Para el personal clínico o usuarios no experimentados en tecnología, implement
 * [Requisitos e Instalación](#requisitos-e-instalación)
 * [Equipo de Desarrollo](#equipo-de-desarrollo)
 
+### Equipo de trabajo 
+
+* Herbert Espejo 
+* Jesús Cruz 
+* Axel Morales 
+* Agustín Dzib 
+* Estefanía Esquivel 
+
+---
+# Análisis de requisitos
+
+Los requisitos se agrupan por módulo, siguiendo la estructura del diagrama de clases: Autenticación, Gestión de Pacientes, Registro de Signos Vitales, Historial del Paciente y Evaluación de Estabilidad (Temperatura, Presión Arterial y Frecuencia Cardíaca). 
+
+## Módulo de Autenticación (Login del Médico)
+
+### Requisitos funcionales
+
+| ID | Requisito Funcional | Descripción / Criterio de Aceptación |
+| :--- | :--- | :--- |
+| **RF-LOG-01** | Inicio de Sesión | El sistema debe solicitar credenciales de acceso (correo/usuario y contraseña) antes de permitir la navegación a cualquier módulo protegido. |
+| **RF-LOG-02** | Validación de Credenciales | El sistema debe verificar las credenciales ingresadas contra la base de datos persistente (PostgreSQL) mediante servicios de autenticación seguros y denegar el acceso si son incorrectas. |
+| **RF-LOG-03** | Control de Acceso basado en Roles (RBAC) | El sistema debe restringir las funcionalidades de registro, evaluación de signos vitales e historial clínico exclusivamente a usuarios autenticados con el rol `"MÉDICO"`. |
+| **RF-LOG-04** | Manejo Seguro de Errores | El sistema debe desplegar un mensaje de error genérico (*"Credenciales inválidas"*) al fallar el inicio de sesión, omitiendo detalles sobre cuál campo fue el incorrecto por motivos de seguridad. |
+| **RF-LOG-05** | Redirección Post-Autenticación | Tras una autenticación exitosa, el sistema debe almacenar el token de sesión en la PWA y redirigir automáticamente al médico al panel principal del Historial de Pacientes. |
+
+### Requisitos no funcionales
+
+| ID | Requisito No Funcional | Descripción / Criterio de Aceptación |
+| :--- | :--- | :--- |
+| **RNF-LOG-01** | Tiempo de Respuesta | El proceso de autenticación y generación de respuesta debe ejecutarse en un tiempo no mayor a 2 segundos bajo condiciones normales de red. |
+| **RNF-LOG-02** | Enmascaramiento de Contraseña | Las contraseñas ingresadas en la interfaz de usuario deben estar enmascaradas (campo de tipo `password`) para prevenir la exposición visual en pantalla. |
+| **RNF-LOG-03** | Protección de Credenciales en Tránsito y Reposo | La contraseña debe transmitirse de forma cifrada sobre protocolo seguro (HTTPS) y nunca almacenarse en texto plano en la base de datos (uso de algoritmos de hash como BCrypt). |
+
+
 ---
 
 ## Descripción General
@@ -44,9 +78,9 @@ El **Sistema de Gestión de Signos Vitales** permite la captura manual de consta
 
 | Componente | Tecnología / Herramienta |
 | :--- | :--- |
-| **Lenguaje de Programación** | Java 17+, Framework Spring Boot (API REST) con Servidor Web Tomcat Embebido <br> <img src="https://miro.medium.com/v2/resize:fit:1200/1*gxXLMIuJDHCH7fwIgEP1cg.png" alt="springboot" width="300"/> |
+| **Lenguaje de Programación** | Java 17+, Framework Spring Boot (API REST) con Servidor Web Tomcat Embebido <br> <img src="https://miro.medium.com/v2/resize:fit:1200/1*gxXLMIuJDHCH7fwIgEP1cg.png" alt="springboot" width="300"/> <br> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFEARqjo5ASV3fe8xgO_HYcdoPEN-loncPMlr6mDZc-A&s=10" alt="tomcat" width="300"/>  |
 | **Pruebas de API & Cliente REST** | Bruno API Client <br> <img src="https://devio2024-media.developers.io/image/upload/f_auto,q_auto,w_3840/v1783834490/user-gen-eyecatch/dwdmcf5jwddw60eykrre.png" alt="Bruno" width="300"/> |
-| **Interfaz Gráfica (UI)** | JavaScript, CSS3 y HTML5 (PWA) |
+| **Interfaz Gráfica (UI)** | JavaScript, CSS3 (Framework: Tailwind CSS y Bootstrap) y HTML5 (PWA) <br> <img src = "https://i.imgur.com/DRUiMyM.png" alt="bootstrap" width="300"/>  <br> <img src ="https://static.cdnlogo.com/logos/t/34/tailwind-css.svg" alt="tailwind" width="300" />|
 | **Contenedorización & DevOps** | Docker (Multi-stage build con Java 17 Temurin) <br> <img src="https://www.docker.com/wp-content/uploads/2022/03/horizontal-logo-monochromatic-white.png" alt="docker" width="300"/> |
 | **Alojamiento Cloud (Hosting)** | **Frontend & Backend:** Render (Web Service desplegado con Docker) <br> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRznRcHFwGdWnxV_iB2TAzQMqbfKiGPw0uP00-npuHSDuVtn1BALmYExnMt&s=10" alt="render" width="300"/> <br><br> **Base de Datos (Host BD):** Supabase <br> <img src="https://miro.medium.com/1*qIupaLEYPaVvP6M2nKcp5Q.png" alt="supabase" width="300"/> |
 | **Base de Datos & Persistencia** | PostgreSQL en Supabase con Spring Data JPA (`JpaRepository`) |
@@ -57,7 +91,7 @@ El **Sistema de Gestión de Signos Vitales** permite la captura manual de consta
 
 ### ¿Por qué la combinación de Render, Docker y Supabase es la elección ideal?
 
-<img src="https://miro.medium.com/1*1YMpP_3xodeGI8nSlTG4ig.png" alt="Arquitectura Render y Supabase" width="600"/>
+<img src="https://miro.medium.com/1*1YMpP_3xodeGI8nSlTG4ig.png" alt="Arquitectura Render y Supabase" width="300"/>
 
 La arquitectura desacoplada y contenedorizada entre **Render**, **Docker** y **Supabase** es la estrategia óptima para publicar una API en producción sin incurrir en costos de infraestructura ni lidiar con problemas de entorno:
 
