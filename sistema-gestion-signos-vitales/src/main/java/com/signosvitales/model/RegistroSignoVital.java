@@ -2,31 +2,25 @@ package com.signosvitales.model;
 
 import java.time.LocalDateTime;
 
-/*
- * Guarda la toma de signos vitales de un paciente con fecha y hora actual
- * Junta las mediciones de temperatura, presion arterial y frecuencia cardiaca
- * y evalua el estado general del paciente
+/**
+ * Guarda la toma de signos vitales de un paciente con fecha y hora actual.
+ * Junta las mediciones de temperatura, presión arterial y frecuencia cardíaca
+ * y evalúa el estado general del paciente.
  */
 public class RegistroSignoVital {
 
     private String idRegistro;
-
-    /** Identificador del paciente al que pertenece la medición .
-     * * EntidadPaciente define quién es el paciente, mientras que
-     * RegistroSignoVital incluye el idPaciente para saber a quién pertenece la medición al
-     * momento de guardarlos o consultarlos desde el CSV.
-    */
     private String idPaciente;
     private LocalDateTime fechaHora;
     private Temperatura temperatura;
     private PresionArterial presionArterial;
     private FrecuenciaCardiaca frecuenciaCardiaca;
 
-    /* Constructor principal con todos los signos vitales */
+    /* Constructor principal */
     public RegistroSignoVital(String idRegistro, String idPaciente,
-                              Temperatura temperatura,
-                              PresionArterial presionArterial,
-                              FrecuenciaCardiaca frecuenciaCardiaca) {
+                               Temperatura temperatura,
+                               PresionArterial presionArterial,
+                               FrecuenciaCardiaca frecuenciaCardiaca) {
         this.idRegistro = idRegistro;
         this.idPaciente = idPaciente;
         this.fechaHora = LocalDateTime.now();
@@ -35,25 +29,21 @@ public class RegistroSignoVital {
         this.frecuenciaCardiaca = frecuenciaCardiaca;
     }
 
-    /**
-     * Constructor sobrecargado enfocado en la medición de presión arterial.
-     * 
-     * @param idRegistro Identificador único del registro.
-     * @param idPaciente Identificador del paciente.
-     * @param presionArterial Instancia de PresionArterial.
-     */
+    /* Constructor sobrecargado enfocado en presión arterial */
     public RegistroSignoVital(String idRegistro, String idPaciente, PresionArterial presionArterial) {
         this(idRegistro, idPaciente, null, presionArterial, null);
     }
 
-    /* Evalua la estabilidad basandose principalmente en la presion arterial */
-    public String determinarNivelEstabilidad() {
+    /**
+     * Evalúa la estabilidad basándose en la categoría etaria del paciente.
+     */
+    public String determinarNivelEstabilidad(CategoriaEtaria categoria) {
         if (presionArterial == null) {
             return "Sin datos";
         }
 
-        // Si todos los signos que hay estan en rango normal
-        boolean presionNormal = presionArterial.esRangoNormal();
+        // Se pasa la categoría etaria requerida por PresionArterial
+        boolean presionNormal = presionArterial.esRangoNormal(categoria);
         boolean tempNormal = (temperatura == null) || temperatura.esRangoNormal();
         boolean fcNormal = (frecuenciaCardiaca == null) || frecuenciaCardiaca.esRangoNormal();
 
@@ -61,15 +51,35 @@ public class RegistroSignoVital {
             return "Normal";
         }
 
-        // Si la presion media es muy baja o muy alta es peligroso
         double pam = presionArterial.calcularPAM();
         if (pam < 65.0 || pam > 115.0) {
             return "Crítico";
         }
 
-        // Si esta alterada pero no en un extremo
         return "Riesgo Moderado";
     }
+
+    /**
+     * Cuenta cuántos signos están en rango normal para determinar el resultado general.
+     */
+    public String calcularNivelEstabilidad(CategoriaEtaria categoria) {
+        boolean tempEstable = (temperatura != null) && temperatura.esRangoNormal();
+        boolean presionEstable = (presionArterial != null) && presionArterial.esRangoNormal(categoria);
+        boolean fcEstable = (frecuenciaCardiaca != null) && frecuenciaCardiaca.esRangoNormal();
+
+        int signosNormales = 0;
+        if (tempEstable) signosNormales++;
+        if (presionEstable) signosNormales++;
+        if (fcEstable) signosNormales++;
+
+        return switch (signosNormales) {
+            case 3 -> "Estable";           // Los tres signos están normales
+            case 1, 2 -> "Riesgo Moderado"; // Uno o dos signos están fuera de rango
+            default -> "Crítico";          // Ningún signo está bien
+        };
+    }
+
+    // --- Getters y Setters ---
 
     public String getIdRegistro() {
         return idRegistro;
@@ -117,23 +127,5 @@ public class RegistroSignoVital {
 
     public void setFrecuenciaCardiaca(FrecuenciaCardiaca frecuenciaCardiaca) {
         this.frecuenciaCardiaca = frecuenciaCardiaca;
-    }
-
-    /* Cuenta cuantos signos estan bien para dar el resultado general */
-    public String calcularNivelEstabilidad() {
-        boolean tempEstable = (temperatura != null) && temperatura.esRangoNormal();
-        boolean presionEstable = (presionArterial != null) && presionArterial.esRangoNormal();
-        boolean fcEstable = (frecuenciaCardiaca != null) && frecuenciaCardiaca.esRangoNormal();
-
-        int signosNormales = 0;
-        if (tempEstable) signosNormales++;
-        if (presionEstable) signosNormales++;
-        if (fcEstable) signosNormales++;
-
-        return switch (signosNormales) {
-            case 3 -> "Estable";          // Los tres signos estan normales
-            case 1, 2 -> "Riesgo Moderado"; // Uno o dos signos estan fuera de rango
-            default -> "Crítico";         // Ningun signo esta bien
-        };
     }
 }
