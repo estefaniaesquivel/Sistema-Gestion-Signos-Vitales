@@ -87,6 +87,10 @@ public class PresionArterial {
         return "Estable";
     }
 
-    public double getSistolica() { return sistolica; }
-    public double getDiastolica() { return diastolica; }
+    public double getSistolica() { 
+        return sistolica; 
+    }
+    public double getDiastolica() { 
+        return diastolica; 
+    }
 }
