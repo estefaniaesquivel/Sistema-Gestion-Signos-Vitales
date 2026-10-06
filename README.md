@@ -24,11 +24,11 @@ Para el personal clínico o usuarios no experimentados en tecnología, implement
 
 ### Equipo de trabajo 
 
-Herbert Espejo 
-Jesús Cruz 
-Axel Morales 
-Agustín Dzib 
-Estefanía Esquivel 
+* Herbert Espejo 
+* Jesús Cruz 
+* Axel Morales 
+* Agustín Dzib 
+* Estefanía Esquivel 
 
 ---
 # Análisis de requisitos
