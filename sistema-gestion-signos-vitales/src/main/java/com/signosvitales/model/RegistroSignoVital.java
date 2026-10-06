@@ -2,6 +2,7 @@ package com.signosvitales.model;
 
 import java.time.LocalDateTime;
 
+//IMPORTANTEE, FALTA REFACTORIZACION EN LA CLASE!!!!!!!!!
 /**
  * Guarda la toma de signos vitales de un paciente con fecha y hora actual.
  * Junta las mediciones de temperatura, presión arterial y frecuencia cardíaca
