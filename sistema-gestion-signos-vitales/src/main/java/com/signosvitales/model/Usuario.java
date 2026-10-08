@@ -1,70 +1,80 @@
 package com.signosvitales.model;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 /**
- * Clase que representa a un usuario (médico) en el sistema
- * 
+ * Clase que representa a un usuario (médico) en el sistema.
+ * Mapeada como Entidad JPA para la persistencia de datos.
  */
+@Entity
+@Table(name = "usuarios")
 public class Usuario {
-    private final String idUsuario;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_usuario")
+    private Long idUsuario;
+
+    @Column(name = "nombre_medico", nullable = false)
     private String nombreMedico;
-    private final String usuario;
+
+    @Column(name = "usuario", nullable = false, unique = true, length = 50)
+    private String usuario;
+
+    @Column(name = "password_hash", nullable = false)
     private String passwordHash;
 
     /**
-     * Constructor de la clase Usuario.
-    * @param idUsuario el ID del usuario
-    * @param nombreMedico el nombre del médico
-    * @param usuario el nombre de usuario
-    * @param passwordHash el hash de la contraseña
-    * 
-    */
-    public Usuario(String idUsuario, String nombreMedico, String usuario, String passwordHash) {
+     * Constructor vacio obligatorio para el funcionamiento interno de JPA/Hibernate.
+     */
+    public Usuario() {
+    }
+
+    /**
+     * Constructor completo para instanciar la entidad manualmente.
+     */
+    public Usuario(Long idUsuario, String nombreMedico, String usuario, String passwordHash) {
         this.idUsuario = idUsuario;
         this.nombreMedico = nombreMedico;
         this.usuario = usuario;
         this.passwordHash = passwordHash;
     }
 
-    /** Getters y Setters */
+    /* --- Getters y Setters --- */
 
-    /**
-     * Obtiene el ID del usuario.
-     * @return El identificador del usuario.
-     */
-    public String getIdUsuario() { 
+    public Long getIdUsuario() { 
         return idUsuario; 
     }
-    /**
-     * Obtiene el nombre del médico.
-     * @return El nombre completo del médico.
-     */
+
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
     public String getNombreMedico() { 
         return nombreMedico; 
     }
-    /**
-     * Obtiene el nombre de usuario de inicio de sesión.
-     * @return El username registrado.
-     */
-    public String getUsuario() { 
-        return usuario; 
-    }
-    /**
-     * Obtiene el hash de la contraseña.
-     * @return El string del hash.
-     */
-    public String getPasswordHash() { 
-        return passwordHash; 
-    }
-    /**
-     * Actualiza el nombre del médico.
-     * @param nombreMedico El nuevo nombre del médico.
-     */
+
     public void setNombreMedico(String nombreMedico) {
         this.nombreMedico = nombreMedico;
     }
-    /**
-     * Actualiza el hash de la contraseña.
-     * @param passwordHash El nuevo hash de la contraseña.
-     */
+
+    public String getUsuario() { 
+        return usuario; 
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getPasswordHash() { 
+        return passwordHash; 
+    }
+
     public void setPasswordHash(String passwordHash) { 
         this.passwordHash = passwordHash; 
     }
