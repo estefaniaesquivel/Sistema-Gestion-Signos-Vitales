@@ -10,9 +10,9 @@ Para el personal clínico o usuarios no experimentados en tecnología, implement
 
 
 Fuentes de aprendizaje principales para el desarrollo de la PWA:
-https://github.com/TalAter/awesome-progressive-web-apps
-https://developer.mozilla.org/es/docs/Web/API/Service_Worker_API
-https://web.dev/learn/pwa/ 
+* https://github.com/TalAter/awesome-progressive-web-apps
+* https://developer.mozilla.org/es/docs/Web/API/Service_Worker_API
+* https://web.dev/learn/pwa/ 
 
 
 ---
