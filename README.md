@@ -8,7 +8,12 @@ Un sistema web PWA en Java diseñado para que el personal médico capture, consu
 ¿Por qué un PWA (Progressive Web App)?
 Para el personal clínico o usuarios no experimentados en tecnología, implementar una PWA es la opción perfecta porque elimina la barrera de instalar software tradicional: no requiere descargar ejecutables .exe ni enfrentarse a confusas advertencias de virus o permisos de administrador. Con solo un clic desde el navegador, el sistema se integra en el equipo como cualquier programa nativo (con su propio ícono en el escritorio y la barra de tareas) y se actualiza de forma transparente (de manera invisible, automática y sin interrumpir al usuario), garantizando que el personal médico trabaje siempre con la versión más reciente sin realizar configuraciones ni mantenimientos manuales.
 
-El desarrollo de la PWA está realizado con la ayuda de los recursos del repositorio: https://github.com/TalAter/awesome-progressive-web-apps, perteneciente al autor del libro "Building Progressive Web Apps - O'Reilly", Tal Ater.
+
+Fuentes de aprendizaje principales para el desarrollo de la PWA:
+https://github.com/TalAter/awesome-progressive-web-apps
+https://developer.mozilla.org/es/docs/Web/API/Service_Worker_API
+https://web.dev/learn/pwa/ 
+
 
 ---
 
