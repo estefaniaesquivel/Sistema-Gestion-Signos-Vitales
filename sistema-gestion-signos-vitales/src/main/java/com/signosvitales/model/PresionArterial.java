@@ -5,11 +5,15 @@ package com.signosvitales.model;
  * adaptada a la CategoriaEtaria e impacto del IMC.
  */
 public class PresionArterial {
-    private double sistolica;  // PAS (Presión Arterial Sistólica)
-    private double diastolica; // PAD (Presión Arterial Diastólica)
+    private double sistolica;  //PAS (Presión Arterial Sistólica)
+    private double diastolica; //PAD (Presión Arterial Diastólica)
+    //Se hace uso de variables inmutables para evitar usar números mágicos
+    private static final int CERO = 0;
+    private static final double DOS = 2;
+    private static final double TRES = 3;
 
     public PresionArterial(double sistolica, double diastolica) {
-        if (sistolica <= 0 || diastolica <= 0 || sistolica <= diastolica) {
+        if (sistolica <= CERO || diastolica <= CERO || sistolica <= diastolica) {
             throw new IllegalArgumentException("PAS y PAD deben ser > 0 y PAS > PAD.");
         }
         this.sistolica = sistolica;
@@ -20,7 +24,7 @@ public class PresionArterial {
      * Presión Arterial Media (PAM): PAM = [(PAD * 2) + PAS] / 3
      */
     public double calcularPAM() {
-        return ((diastolica * 2) + sistolica) / 3.0;
+        return ((diastolica * DOS) + sistolica) / TRES;
     }
 
     /**
